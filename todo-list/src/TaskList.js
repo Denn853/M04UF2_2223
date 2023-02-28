@@ -12,13 +12,22 @@ class TaskList extends React.Component{
 		};
 	}
 
-	render() {
-		console.log("render");
-		const tasks = this.state.items.map(task => {
+	item = () => {
+	
+		let tasks = this.state.items.map(task => {
 			return (
-				<TaskItem text={task}/>
+				<TaskItem text={task} onRemoveTask={this.props.onRemoveTask}/>
 			);
 		});
+
+		return tasks;
+	}
+
+	render() {
+		console.log("render");
+		
+		const tasks = this.item();
+	
 		return (
 			<ol>
 				{tasks}

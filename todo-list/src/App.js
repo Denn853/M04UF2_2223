@@ -26,6 +26,14 @@ class App extends React.Component {
 		});
 	}
 
+	removeTask = (task) => {
+		this.state.tasklist.splice(this.state.tasklist.indexOf(task), 1);
+
+		this.setState ({
+			tasklist: this.state.tasklist
+		});
+	}
+
 	render(){
 		return (
 			<main className="App">
@@ -33,7 +41,7 @@ class App extends React.Component {
 				<Title text="ToDo List App"/>
 
 				<TaskForm onAddTask={this.addTask}/>
-				<TaskList list={this.state.tasklist}/>
+				<TaskList list={this.state.tasklist} onRemoveTask={this.removeTask}/>
 
 				<p>Tienes <strong>{this.state.tasklist.length}</strong> tareas pendientes</p>
       	
