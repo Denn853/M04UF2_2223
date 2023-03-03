@@ -1,6 +1,9 @@
 import React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 class TaskForm extends React.Component{
+
 	constructor(props){
 		super(props);
 		this.state = {
@@ -11,7 +14,7 @@ class TaskForm extends React.Component{
 	render() {
 		return (
 			<form>
-         	<p><input type="text" value={this.state.task} onChange={event => {
+	 			<p><TextField variant="standard" type="text" value={this.state.task} onChange={event => {
 				
 					console.log(event.target.value);
 				
@@ -21,13 +24,14 @@ class TaskForm extends React.Component{
 
 				}} placeholder="Escribe una nueva tarea" /></p>
 
-         	<p><button type="button" name="add-task" onClick={() => {
+         	<Button variant="contained"  name="add-task" onClick={() => {
 
-					if (this.state.task.trim() == "") {
+					if (this.state.task.trim() === " ") {
 						this.setState({
 							task: ""
 						});
-					return;
+					
+						return;
 					}
 	
 					this.props.onAddTask(this.state.task);
@@ -35,7 +39,7 @@ class TaskForm extends React.Component{
 					this.setState({
 						task: ""
 					});
-				}}>+</button></p>
+				}}>+</Button>
    	   </form>
 		);
 	}
