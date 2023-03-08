@@ -1,4 +1,5 @@
 import React from 'react';
+import List from '@mui/material/List';
 
 import TaskItem from './TaskItem';
 
@@ -14,24 +15,21 @@ class TaskList extends React.Component{
 
 	item = () => {
 	
-		let tasks = this.state.items.map(task => {
-			return (
-				<TaskItem text={task} onRemoveTask={this.props.onRemoveTask}/>
-			);
-		});
-
-		return tasks;
-	}
-
 	render() {
 		console.log("render");
+		let counter = -1;
+
+		const tasks = this.state.items.map(task => {
+			counter++;
+			return (
+				<TaskItem text={task} num_task={counter} onRemoveTask={this.props.onRemoveTask}/>
+			);
+		});
 		
-		const tasks = this.item();
-	
 		return (
-			<ol>
+			<List>
 				{tasks}
-			</ol>
+			</List>
 		);
 	}
 }

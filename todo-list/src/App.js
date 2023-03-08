@@ -1,4 +1,6 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -8,11 +10,11 @@ import Title from './Title';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
 
-import './App.css';
+import './TODO.css';
 
 class App extends React.Component {
 
-	constructor (props) {
+	constructor(props) {
 		super(props);
 
 		this.state = {
@@ -29,8 +31,13 @@ class App extends React.Component {
 		});
 	}
 
+<<<<<<< HEAD
 	removeTask = (task) => {
 		this.state.tasklist.splice(task, 1);
+=======
+	removeTask = (task_num) => {
+		this.state.tasklist.splice(task_num, 1);
+>>>>>>> 3c55aae90423b0fa278a354e3717c8f7058c5d81
 
 		this.setState ({
 			tasklist: this.state.tasklist
@@ -39,16 +46,29 @@ class App extends React.Component {
 
 	render(){
 		return (
-			<main className="App">
-      	
-				<Title text="ToDo List App"/>
+			<Box 
+				sx={{
+					display: 'flex', 
+					justifyContent: 'center',
+					alignItems: 'center',
+					height: '100%',
+					background: 'linear-gradient(to right bottom, #430089, #82ffa1)'
+				}}
+			>
+   	   	<Paper elevation = {3}>	
+					sx={{
+						padding: '16px'
+					}}
 
-				<TaskForm onAddTask={this.addTask}/>
-				<TaskList list={this.state.tasklist} onRemoveTask={this.removeTask}/>
+					<Title text="ToDo List App"/>
 
-				<p>Tienes <strong>{this.state.tasklist.length}</strong> tareas pendientes</p>
-      	
-			</main>
+					<TaskForm onAddTask={this.addTask}/>
+					<TaskList list={this.state.tasklist} onRemoveTask={this.removeTask}/>
+
+					<p>Tienes <strong>{this.state.tasklist.length}</strong> tareas pendientes</p>
+      
+				</Paper>
+			</Box>
 		);
 	}
 }
