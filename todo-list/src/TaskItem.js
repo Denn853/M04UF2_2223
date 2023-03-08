@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
@@ -40,7 +41,7 @@ class TaskItem extends React.Component{
 			<ListItem>
 				<ListItemText primary={this.props.text} /> 
 					
-					<Tooltip title="Delete" onClick={this.openDialog()}>
+					<Tooltip title="Delete" onClick={this.openDialog}>
 						
 						<IconButton> 
 							<DeleteIcon />
@@ -58,7 +59,7 @@ class TaskItem extends React.Component{
 						
 						<DialogActions>
 							<Button color="secondary" onClick={this.closeDialog}> Discard </Button>
-							<Button variant="contained" color="error" autofocus> Delelte </Button>	
+							<Button variant="contained" color="error" autofocus onClick={this.removeTask}> Delelte </Button>	
 						</DialogActions>
 
 					</Dialog>
