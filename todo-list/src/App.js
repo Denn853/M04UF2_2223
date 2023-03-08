@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+
 import Title from './Title';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
@@ -17,7 +21,6 @@ class App extends React.Component {
 	}
 
 	addTask = (task) => {
-		console.log(task);	
 		
 		this.state.tasklist.unshift(task);
 		
@@ -27,7 +30,7 @@ class App extends React.Component {
 	}
 
 	removeTask = (task) => {
-		this.state.tasklist.splice(this.state.tasklist.indexOf(task), 1);
+		this.state.tasklist.splice(task, 1);
 
 		this.setState ({
 			tasklist: this.state.tasklist
