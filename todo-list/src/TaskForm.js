@@ -21,7 +21,8 @@ class TaskForm extends React.Component {
 					task: event.target.value
 				});
 			}}/>
-		  	<Button variant="contained" type="button" onClick={() => {
+		  	
+			<Button variant="contained" type="button" onClick={() => {
 				
 				if (this.state.task.trim() === "") {
 					this.setState({
@@ -31,6 +32,7 @@ class TaskForm extends React.Component {
 				}
 				
 				this.props.onAddTask(this.state.task);
+			
 				this.setState({
 					task: ""
 				});

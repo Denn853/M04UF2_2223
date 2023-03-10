@@ -15,28 +15,51 @@ import './ToDo.css';
 
 class App extends React.Component {
   
-  constructor(props) {
-  	super(props);
-	this.state = {
-		tasklist: []
-	};
-  }
+  	constructor(props) {
+  		super(props);
+	
+		this.state = {
+			tasklist: []
+		};
+  	}
 
-  addTask = (task) => {
+	componentDidMount () {
+		fetch('http://10.40.2.119:8080')
+			.then(response => response.json())
+				.then(data => this.createTaskList(data));
+	}
 
-	this.state.tasklist.unshift(task);
-	this.setState ({
-		tasklist: this.state.tasklist
-	});
-  }
+	createTaskList = (data) => {
+		if (data.length <= 0) {
+			return;
+		}
+		
+		for (let i = 0; i < data.length; i++) {
+			this.state.tasklist.push(data[i].item);
+		}
+	
+		this.setState({
+			tasklist: this.state.tasklist
+		});
 
-  deleteTask = (taskNum) => {
+	}
 
-	this.state.tasklist.splice(taskNum, 1);
-	this.setState ({
-		tasklist: this.state.tasklist
-	});
-  }
+	addTask = (task) => {
+		this.state.tasklist.unshift(task);
+		
+		this.setState ({
+			tasklist: this.state.tasklist
+		});
+	}
+
+	removeTask = (taskNum) => {
+
+		this.state.tasklist.splice(taskNum, 1);
+	
+		this.setState ({
+			tasklist: this.state.tasklist
+		});
+  	}
 
   render() {
 
@@ -48,7 +71,7 @@ class App extends React.Component {
 				justifyContent:'center',
 				alignContent:'center',
 				height: '100%',
-				background: 'linear-gradient(#e66465, #9198e5)'
+				background: 'linear-gradient(#c16fff, #6fe6ff, #5dffac)'
 			}}
 		>
 			<Paper elevation={3}
@@ -56,15 +79,17 @@ class App extends React.Component {
 					padding:'16px'
 				}}
 			>
-				<Title text="ToDO List App" />
-				<TaskForm onAddTask={this.addTask} />
-				<TaskList list={this.state.tasklist} onDeleteTask={this.deleteTask}/>
-				<Chip 
+				<Title text="ToDO List App"/>
+				<TaskForm onAddTask = {this.addTask} />
+				<TaskList list={this.state.tasklist} onRemoveTask={this.removeTask}/>
+
+				<Chip
 					variant="outlined"
 					color="info"
 					icon={<Badge badgeContent={this.state.tasklist.length} color="info"><AnnouncementIcon color="action"/></Badge>}
-					label="pending tasks"
+					label="Pending Tasks"
 				/>
+
 			</Paper>
     	</Box>
   	);

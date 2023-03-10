@@ -38,7 +38,7 @@ class TaskItem extends React.Component {
 
 	removeTask = () => {
 		this.closeDialog();
-		this.props.onRemoveTask(this.props.taskNum);
+		this.props.onRemoveTask(this.props.numTask);
 	}
 
 	render() {
@@ -59,7 +59,7 @@ class TaskItem extends React.Component {
 				</DialogContent>
 				<DialogActions>
 					<Button type="button" color="secondary" onClick={this.closeDialog}>Discard</Button>	
-					<Button type="button" variant="contained" color="error" autofocus onClick={this.RemoveTask}>Delete</Button>	
+					<Button type="button" variant="contained" color="error" autoFocus onClick={this.removeTask}>Delete</Button>	
 				</DialogActions>
       		</Dialog>	
 		</ListItem>
