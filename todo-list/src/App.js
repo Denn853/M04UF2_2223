@@ -45,6 +45,14 @@ class App extends React.Component {
 	}
 
 	addTask = (task) => {
+
+		let item = {item: task};
+
+		fetch('http://10.40.2.119:8080',{
+			method: 'POST',
+			body: JSON.stringify(item)
+		});
+
 		this.state.tasklist.unshift(task);
 		
 		this.setState ({
